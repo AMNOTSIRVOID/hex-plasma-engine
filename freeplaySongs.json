@@ -1,0 +1,13 @@
+{
+    "songs": [
+        {
+            "name": "glitcher",
+            "difficulties": [
+                "hard"
+            ],
+            "icon": "hexg",
+            "color": [213, 4, 0],
+            "bpm": 175
+        }
+    ]
+}

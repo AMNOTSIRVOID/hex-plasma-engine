@@ -1,0 +1,7 @@
+function create() {
+    character.frames = FNFAssets.getCharacterSparrow(character.curCharacter);
+    trace("hamburger");
+    character.loadYoshiJSON(); // loads config.json from char folder
+    trace("among us");
+  }
+   

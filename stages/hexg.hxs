@@ -1,0 +1,53 @@
+var bg:FlxSprite = new FlxSprite(-600,-200).loadGraphic(FNFAssets.getImage(AssetPaths.image('glitcher/stageback')));
+var fg:FlxSprite = new FlxSprite(-650,600).loadGraphic(FNFAssets.getImage(AssetPaths.image('glitcher/stagefront')));
+var wire:FlxSprite = new FlxSprite(-600, -200).loadGraphic(FNFAssets.getImage(AssetPaths.image("glitcher/WIREStageBack")));
+var dad2:Character = new Character(100, 100, "wirehex");
+var bf2:Boyfriend = new Boyfriend(770, 100, "wire-bf");
+function glitch() {
+	FlxTween.tween(bf2, {alpha: 1}, 0.17, {ease: FlxEase.Cubein});
+	FlxTween.tween(dad2, {alpha: 1}, 0.17, {ease: FlxEase.Cubein});
+	FlxTween.tween(wire, {alpha: 1}, 0.17, {ease: FlxEase.Cubein});
+	FlxTween.tween(PlayState.dad, {alpha: 0.0}, 0.17, {ease: FlxEase.Cubeout});
+	FlxTween.tween(PlayState.bf, {alpha: 0.0}, 0.17, {ease: FlxEase.Cubeout});
+	FlxTween.tween(PlayState.gf, {alpha: 0.0}, 0.17, {ease: FlxEase.Cubeout});
+}
+function unglitch() {
+	FlxTween.tween(bf2, {alpha: 0}, .2, {ease: FlxEase.Cubeout});
+	FlxTween.tween(dad2, {alpha: 0}, .2, {ease: FlxEase.Cubeout});
+	FlxTween.tween(wire, {alpha: 0}, .2, {ease: FlxEase.Cubeout});
+	FlxTween.tween(PlayState.dad, {alpha: 1}, .2, {ease: FlxEase.Cubein});
+	FlxTween.tween(PlayState.bf, {alpha: 1}, .2, {ease: FlxEase.Cubein});
+	FlxTween.tween(PlayState.gf, {alpha: 1}, .2, {ease: FlxEase.Cubein});
+}
+function create() {
+	PlayState.dads.push(dad2);
+	PlayState.bfs.push(bf2);
+	dad2.alpha = 0.0001;
+	bf2.alpha = 0.00001;
+bf2.isPlayer = true;
+PlayState.cameraSpeed = 1.5;
+removeStage();
+stage.dadPosition.set(100, 100);
+stage.gfPosition.set(400, 130);
+stage.bfPosition.set(770, 100);
+	//stage = loadStage('glitcher');
+	add(bg);
+	add(fg);
+	add(wire);
+	wire.alpha = 0.00001;
+	add(dad2);
+	add(bf2);
+	bg.scrollFactor.set(0.9,0.9);
+	fg.scrollFactor.set(0.9,0.9);
+
+	PlayState.defaultCamZoom = 0.9;
+}
+
+function stepHit(curStep:Int) {
+	switch (curStep) {
+		case 576, 1086:
+			glitch();
+		case 816, 1328:
+			unglitch();
+	}
+}

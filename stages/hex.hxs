@@ -1,0 +1,6 @@
+var bg:FlxSprite = new FlxSprite.loadGraphic(FNFAssets.getImage(AssetPaths.image("hexstage/bg")));
+var bg:FlxSprite = new FlxSprite.loadGraphic(FNFAssets.getImage(AssetPaths.image("hexstage/fg")));
+
+function create(){
+
+} 
